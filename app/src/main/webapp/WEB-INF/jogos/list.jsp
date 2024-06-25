@@ -1,0 +1,39 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jogos</title>
+</head>
+<body>
+    <div class="container">
+    <h1>Jogos</h1>
+    <a href="/jogos/insert" class="btn btn-primary">Novo Jogo</a>  
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Titulo</th>
+            <th>Gênero</th>
+            <th>Multiplayer</th>
+            <th>&nbsp;</th>
+        </tr>
+        <c:forEach var="item" items="${jogos}">
+        <tr>
+            <td>${item.id}</td>
+            <td>${item.titulo}</td>
+            <td>${item.genero.nome}</td>
+            <td>
+                <c:if test="${item.multiplayer == 1}">1</c:if>
+                <c:if test="${item.multiplayer != 1}">0</c:if>
+            </td>
+            <td>
+                <a href="/jogos/update?id=${item.id}" class="btn btn-secondary">Editar</a>
+                <a href="/jogos/delete?id=${item.id}" class="btn btn-danger">Excluir</a>
+            </td>
+        </tr>
+        </c:forEach>
+    </table>
+</div>
+</body>
+</html>
